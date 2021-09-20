@@ -3,6 +3,7 @@ import {BrowserRouter,Switch,Route,Redirect} from 'react-router-dom';
 import '../component_css/home.css';
 import Header  from './header';
 import Footer  from './footer';
+import Cards from './cards'
 
 class Home extends Component {
 
@@ -17,7 +18,9 @@ class Home extends Component {
         <div> 
 
             <Header/>
+            <Cards/>
             <Footer/>
+           
 
          
         </div>
