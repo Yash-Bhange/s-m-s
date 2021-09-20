@@ -31,7 +31,7 @@ class Footer extends Component {
                 
                 <div>
                 <i class="fa fa-envelope"></i>
-                <p><a href="mailto:support@company.com">yashbhange888@gmail.com</a></p>
+                <p>yashbhange888@gmail.com</p>
                 </div>
                 
                 </div>
@@ -39,15 +39,15 @@ class Footer extends Component {
                 <div class="footer-right">
                 
                 <p class="footer-company-about">
-                <span>About the project</span>
-                Web Dev Trick is a blog for web designers, graphic designers, web developers &amp; SEO Learner.
+                <span><b>About the project</b></span>
+               Subsidiary Management System using Blockchain for easy and Safe Allocation of Commodities !
                 </p>
                 
                 <div class="footer-icons">
                 
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-twitter-square"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
                 <a href="#"><i class="fa fa-github"></i></a>
                 
                 </div>
