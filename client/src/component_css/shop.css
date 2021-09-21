@@ -58,7 +58,9 @@
 
   .quantity {
     margin-top:10% ;
-    margin-left: 20%;
+    margin-left: 15%;
+    
+    
     
   }
   .quantity input {
@@ -111,22 +113,46 @@
   }
 
 .content{
-    padding-left:3% ;
- 
-
+    margin-left:3% ;
+    
+}
+.commodity{
+  display: flex;
+}
+#commo{
+  margin-left: 3%;
+  
+}
+#commoQuantity{
+  margin-left: 37%;
+}
+#commoPrice{
+  margin-left: 37%;
+}
+#headingSec{
+  display: flex;
+}
+.contentQuantity{
+margin-left: 30%;
+  
 }
 .contentPrice{
-    float: right;
-    padding-right:3% ;
+  margin-left: 30%;
 }
-.commo-name{
-      padding-left:3% ;
-}
-.commo-price{
-    float:right;
-    padding-right:3% ;
 
+.totalIn{
+margin-left: 3%;
+float: left;
 }
+.totalFull{
+ float: right;
+ text-align: right;
+ padding-right: 5%;
+}
+
+
+
+
 
 .sendSection{
     text-align: center;
@@ -154,6 +180,9 @@
 #sendReqButton :hover{
     background-color: #45a049;
 }
+
+
+
 
   @media (max-width: 800px) {
 
