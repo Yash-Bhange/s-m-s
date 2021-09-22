@@ -1,0 +1,90 @@
+#adminContainer{
+display: flex;
+}
+#adminRates{
+    width: 50%;
+    overflow: scroll;
+}
+#adminRequest{
+    width: 50%;
+    height: 600px;
+    overflow: scroll;
+    
+}
+
+.headingColor{
+    background-color: rgb(231, 231, 231);
+}
+
+.adminCommodity{
+    display: flex;
+  }
+  #adminCommo{
+    margin-left: 3%;
+    
+  }
+  #adminCommoQuantity{
+    margin-left: 37%;
+  }
+  #adminCommoPrice{
+    margin-left: 25%;
+  }
+  #adminHeadingSec{
+    display: flex;
+  }
+  .adminContent{
+      margin-left: 3%;
+  }
+  .adminContentQuantity{
+  margin-left: 40%;
+    
+  }
+  .adminContentPrice{
+    margin-left: 27%;
+  }
+
+  .adminRatesInputBox{
+      width: 50%;
+  }
+
+  .adminSubInputBox{
+    width: 50%;
+}
+
+.adminUpdateButtonSection{
+    text-align: center;
+
+}
+#adminUpdateButton{
+    background-color: #04AA6D;
+    width: 17%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 2px;
+}
+#adminUpdateButton:hover{
+    background-color: #068053;
+}
+@media (max-width: 800px) {
+
+    #adminContainer{
+        display: block;
+    }
+    #adminRates{
+        width: 100%;
+    }
+    #adminRequest{
+        width: 100%;
+  
+    }
+    .adminRatesInputBox{
+        width: 100%;
+    }
+    .adminSubInputBox{
+        width: 100%;
+    }
+
+}
