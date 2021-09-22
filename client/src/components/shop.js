@@ -313,7 +313,7 @@ render(){
 
 <div> 
 
-    <Header/>
+    <Header activeSection='shop' />
     <br></br>
     <br></br>
     <div class="shopping-cart">
@@ -449,7 +449,7 @@ render(){
             <div class="content">
                 <hr></hr>
                 <div id="headingSec">
-                <span class="content"><b>Items </b></span> <span class="contentQuantity"><b>Quantity </b></span> <span class="contentPrice"><b>Price </b></span> 
+                <span class="content"><b>Items </b></span> <span class="contentQuantity"><b>Quantity </b></span> <span class="contentPrice"><b>Price</b></span> 
                 </div>
                 
                 <hr></hr>

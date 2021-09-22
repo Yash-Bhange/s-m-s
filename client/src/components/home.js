@@ -17,7 +17,7 @@ class Home extends Component {
     return (
         <div> 
 
-            <Header/>
+            <Header activeSection='home'/>
             <Cards/>
             <Footer/>
            
