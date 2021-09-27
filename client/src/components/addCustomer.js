@@ -1,7 +1,7 @@
 import React ,{Component} from 'react';
 import '../component_css/addCustomer.css';
 import Header from './header.js'
-import firebase from '../helper/firebase.js'
+//import firebase from '../helper/firebase.js'
 
 class AddCustomer extends Component {
 
@@ -29,7 +29,7 @@ class AddCustomer extends Component {
     console.log(criteria,this.state.customerAddress)
 
 
-    firebase.firestore().collection('customers').add({
+    /*firebase.firestore().collection('customers').add({
        id: this.state.customerAddress,
        category:criteria,
        name:"yash",
@@ -43,7 +43,7 @@ class AddCustomer extends Component {
       .catch((err)=>{
           console.log("error : "+err)
           alert("error occured")
-      })  
+      })  */
 
 
   }
