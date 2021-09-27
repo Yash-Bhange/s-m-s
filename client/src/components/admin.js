@@ -13,7 +13,31 @@ class Admin extends Component {
             <br></br>
             <br></br>
 
+            <div id="addUserSection">
+                <div id="totalMoney" class="adminButtons">
+                    <span>Total Amount Remaining : </span> <b>12.43 ETH</b>
 
+                </div>
+
+                <div id="addCustomer" class="adminButtons">
+                    <a href="/add-customer"> <button class="adminButton1">Add Customer</button></a>
+
+                </div>
+                <div id="addShopkeeper" class="adminButtons">
+                    <a href="/add-shopkeeper"><button class="adminButton1">Add ShopKepper</button></a>
+
+                </div>
+               
+
+            </div>
+
+            <br></br>
+            <br></br>
+            <br></br>
+
+
+
+    
 
             <div id="adminContainer">
 

@@ -1,0 +1,38 @@
+
+#addcustomerButton{
+    background-color: #068053;
+}
+#addcustomerButtonSection{
+    text-align: center;
+}
+#addcustomerButton:hover{
+    background-color: #036843;
+
+}
+#customerId{
+    width: 30%;
+    margin : 0 auto;
+    
+}
+
+#radioSection{
+    margin: auto;
+    width: 20%;
+
+   padding-left: 4%;
+}
+#radioSectionLeft{
+    
+}
+
+@media (max-width: 800px) {
+
+    #customerId{
+        width: 80%;
+    }
+    #radioSection{
+        width: 50%;
+       padding-left: 4%;
+    }
+   
+}

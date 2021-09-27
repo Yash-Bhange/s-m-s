@@ -68,6 +68,39 @@ display: flex;
 #adminUpdateButton:hover{
     background-color: #068053;
 }
+.adminButtons{
+    text-align: center;
+}
+.adminButton1{
+    background-color: #4CAF50;
+    color: white;
+    padding: 9px 9px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .adminButton1:hover{
+      background-color: #45a049;
+  }
+#addCustomer{
+    float: right;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+  
+#addShopkeeper{
+    float: right;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+#totalMoney{
+    float: right;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+  
+
+
 @media (max-width: 800px) {
 
     #adminContainer{
@@ -85,6 +118,12 @@ display: flex;
     }
     .adminSubInputBox{
         width: 100%;
+    }
+    #addUserSection{
+        font-size:smaller;
+    }
+    .adminButton1{
+        font-size: smaller;
     }
 
 }
