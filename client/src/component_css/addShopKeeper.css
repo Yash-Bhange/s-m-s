@@ -1,0 +1,25 @@
+
+#addShopKeeperButton{
+    background-color: #068053;
+}
+#addShopKeeperButtonSection{
+    text-align: center;
+}
+#addShopKeeperButton:hover{
+    background-color: #036843;
+
+}
+#shopKeeperId{
+    width: 30%;
+    margin : 0 auto;
+    
+}
+
+
+@media (max-width: 800px) {
+
+    #shopKeeperId{
+        width: 80%;
+    }
+   
+}

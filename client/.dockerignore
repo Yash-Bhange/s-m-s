@@ -1,7 +1,4 @@
 /build
-
 .git
-
 *.md
-
 .gitignore
