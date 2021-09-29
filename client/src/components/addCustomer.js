@@ -1,7 +1,8 @@
 import React ,{Component} from 'react';
 import '../component_css/addCustomer.css';
 import Header from './header.js'
-//import firebase from '../helper/firebase.js'
+import db from '../helper/firebase.js'
+import { collection, addDoc } from "firebase/firestore"; 
 
 class AddCustomer extends Component {
 
@@ -24,13 +25,21 @@ class AddCustomer extends Component {
   }
 
 
-  onSubmit(){
+  async onSubmit(){
     var criteria=document.querySelector('input[name="radio1"]:checked').value;
     console.log(criteria,this.state.customerAddress)
 
 
-    /*firebase.firestore().collection('customers').add({
-       id: this.state.customerAddress,
+    const docRef = await addDoc(collection(db, "customers"), {
+      bcidid: this.state.customerAddress,
+      category:criteria,
+      name:"yash",
+      location:"nagpur"
+    });
+    console.log("Document written with ID: ", docRef.id);
+
+    /*db.collection('customers').add({
+       bcid: this.state.customerAddress,
        category:criteria,
        name:"yash",
        location:"nagpur"
@@ -38,13 +47,27 @@ class AddCustomer extends Component {
       .then((result)=>{
         console.log("result : "+result)
         alert("successfully registerd !")
-    
+
       })
       .catch((err)=>{
           console.log("error : "+err)
           alert("error occured")
-      })  */
+      }) 
+  
+     collection(db,"customers").add({
+      id: this.state.customerAddress,
+      category:criteria,
+      name:"yash",
+      location:"nagpur"
+      }).then((result)=>{
+        console.log("result : "+result)
+        alert("successfully registerd !")
 
+      })
+      .catch((err)=>{
+          console.log("error : "+err)
+          alert("error occured")
+      })*/
 
   }
 
@@ -73,11 +96,11 @@ class AddCustomer extends Component {
 
               <div id="radioSectionLeft">
                 <input type="radio" name="radio1" value="refugee"></input>
-                <label>&emsp;Refugee</label>  <br></br>
+                <label>&emsp; Refugee </label>  <br></br>
                 <input type="radio" name="radio1" value="apl"></input>
-                <label>&emsp; Above Poverty Line</label> <br></br>
+                <label>&emsp; Above Poverty Line </label> <br></br>
                 <input type="radio" name="radio1" value="bpl"></input>
-                <label>&emsp; Below Poverty Line</label> <br></br>
+                <label>&emsp; Below Poverty Line </label> <br></br>
               </div>
           
           </div>
