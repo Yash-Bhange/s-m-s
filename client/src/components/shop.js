@@ -6,8 +6,9 @@ import riceImg from '../static/rice.jpg'
 import sugarImg from '../static/sugar.jpg'
 import dalImg from '../static/dal.jpg'
 import oilImg from '../static/oil.jpg'
-
 import Header from './header.js'
+import db from '../helper/firebase.js'
+import {Firestore,collection,setDoc,doc,getDocs,addDoc} from "firebase/firestore";
 
 
 class Shop extends Component {
@@ -25,8 +26,19 @@ constructor(props){
         sugarPrice:0,
         dalPrice:0,
         oilPrice:0,
+        wheatPriceFirebase:0,
+        ricePriceFirebase:0,
+        sugarPriceFirebase:0,
+        dalPriceFirebase:0,
+        oilPriceFirebase:0,
+        wheatSubsidy:null,
+        riceSubsidy:null,
+        oilSubsidy:null,
+        sugarSubsidy:null,
+        dalSubsidy:null,
         totalPrice:0,
-        totalPriceETH:0
+        totalPriceETH:0,
+        totalPriceFirebase:0
 
       
     };
@@ -35,6 +47,58 @@ constructor(props){
     this.increasePrice=this.increasePrice.bind(this); 
     this.decreasePrice=this.decreasePrice.bind(this); 
 }
+
+
+
+async componentWillMount(){
+    console.log("yash Bhange");
+    const querySnapshot = await getDocs(collection(db, "rates"));
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+      switch(doc.data().item){
+          case 'wheat':
+              this.setState({
+                  wheatPriceFirebase:doc.data().valuePerKg,
+                  wheatSubsidy:doc.data().subsidy
+
+              });
+              break;
+           case 'rice':
+              this.setState({
+                  ricePriceFirebase:doc.data().valuePerKg,
+                  riceSubsidy:doc.data().subsidy
+
+              });
+              break;
+            case 'sugar':
+              this.setState({
+                  sugarPriceFirebase:doc.data().valuePerKg,
+                  sugarSubsidy:doc.data().subsidy
+
+              });
+              break;
+            case 'dal':
+              this.setState({
+                  dalPriceFirebase:doc.data().valuePerKg,
+                  dalSubsidy:doc.data().subsidy
+
+              });
+              break;
+            case 'oil':
+                this.setState({
+                    oilPriceFirebase:doc.data().valuePerKg,
+                    oilSubsidy:doc.data().subsidy
+
+                });
+                break;
+      }
+
+    });
+    
+
+
+}
+
 
 async increasePrice(item){
 
@@ -46,10 +110,11 @@ async increasePrice(item){
                 wheatCount:count
             });
             this.setState({
-                wheatPrice:count*40
+                wheatPrice:count*(this.state.wheatPriceFirebase-((this.state.wheatSubsidy/100)*this.state.wheatPriceFirebase))
             },()=>{
                 this.setState({
                     totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice,
+                    totalPriceFirebase:this.state.wheatCount*parseInt(this.state.wheatPriceFirebase)+this.state.riceCount*parseInt(this.state.ricePriceFirebase)+this.state.sugarCount*parseInt(this.state.sugarPriceFirebase)+this.state.dalCount*parseInt(this.state.dalPriceFirebase)+this.state.oilCount*parseInt(this.state.oilPriceFirebase),
                 },()=>{
                     this.setState({
                         totalPriceETH:(this.state.totalPrice*0.00000461).toFixed(6)
@@ -64,10 +129,11 @@ async increasePrice(item){
                 riceCount:count
             });
             this.setState({
-                ricePrice:count*40
+                ricePrice:count*(this.state.ricePriceFirebase-((this.state.riceSubsidy/100)*this.state.ricePriceFirebase))
             },()=>{
                 this.setState({
                     totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice,
+                    totalPriceFirebase:this.state.wheatCount*parseInt(this.state.wheatPriceFirebase)+this.state.riceCount*parseInt(this.state.ricePriceFirebase)+this.state.sugarCount*parseInt(this.state.sugarPriceFirebase)+this.state.dalCount*parseInt(this.state.dalPriceFirebase)+this.state.oilCount*parseInt(this.state.oilPriceFirebase),
                 
                 },()=>{
                     this.setState({
@@ -83,10 +149,12 @@ async increasePrice(item){
                 sugarCount:count
             });
             this.setState({
-                sugarPrice:count*40
+                sugarPrice:count*(this.state.sugarPriceFirebase-((this.state.sugarSubsidy/100)*this.state.sugarPriceFirebase))
             },()=>{
                 this.setState({
-                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice
+                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice,
+                    totalPriceFirebase:this.state.wheatCount*parseInt(this.state.wheatPriceFirebase)+this.state.riceCount*parseInt(this.state.ricePriceFirebase)+this.state.sugarCount*parseInt(this.state.sugarPriceFirebase)+this.state.dalCount*parseInt(this.state.dalPriceFirebase)+this.state.oilCount*parseInt(this.state.oilPriceFirebase),
+
                 },()=>{
                     this.setState({
                         totalPriceETH:(this.state.totalPrice*0.00000461).toFixed(6)
@@ -101,10 +169,11 @@ async increasePrice(item){
                 dalCount:count
             });
             this.setState({
-                dalPrice:count*40
+                dalPrice:count*(this.state.dalPriceFirebase-((this.state.dalSubsidy/100)*this.state.dalPriceFirebase))
             },()=>{
                 this.setState({
-                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice
+                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice,
+                    totalPriceFirebase:this.state.wheatCount*parseInt(this.state.wheatPriceFirebase)+this.state.riceCount*parseInt(this.state.ricePriceFirebase)+this.state.sugarCount*parseInt(this.state.sugarPriceFirebase)+this.state.dalCount*parseInt(this.state.dalPriceFirebase)+this.state.oilCount*parseInt(this.state.oilPriceFirebase),
                 },()=>{
                     this.setState({
                         totalPriceETH:(this.state.totalPrice*0.00000461).toFixed(6)
@@ -119,10 +188,11 @@ async increasePrice(item){
                oilCount:count
             });
             this.setState({
-                oilPrice:count*40
+                oilPrice:count*(this.state.oilPriceFirebase-((this.state.oilSubsidy/100)*this.state.oilPriceFirebase))
             },()=>{
                 this.setState({
-                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice
+                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice,
+                    totalPriceFirebase:this.state.wheatCount*parseInt(this.state.wheatPriceFirebase)+this.state.riceCount*parseInt(this.state.ricePriceFirebase)+this.state.sugarCount*parseInt(this.state.sugarPriceFirebase)+this.state.dalCount*parseInt(this.state.dalPriceFirebase)+this.state.oilCount*parseInt(this.state.oilPriceFirebase),
                 },()=>{
                     this.setState({
                         totalPriceETH:(this.state.totalPrice*0.00000461).toFixed(6)
@@ -146,10 +216,12 @@ decreasePrice(item){
                 wheatCount:count
             });
             this.setState({
-                wheatPrice:count*40
+                wheatPrice:count*(this.state.wheatPriceFirebase-((this.state.wheatSubsidy/100)*this.state.wheatPriceFirebase))
             },()=>{
                 this.setState({
-                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice
+                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice,
+                    totalPriceFirebase:this.state.wheatCount*parseInt(this.state.wheatPriceFirebase)+this.state.riceCount*parseInt(this.state.ricePriceFirebase)+this.state.sugarCount*parseInt(this.state.sugarPriceFirebase)+this.state.dalCount*parseInt(this.state.dalPriceFirebase)+this.state.oilCount*parseInt(this.state.oilPriceFirebase),
+
                 },()=>{
                     this.setState({
                         totalPriceETH:(this.state.totalPrice*0.00000461).toFixed(6)
@@ -164,10 +236,12 @@ decreasePrice(item){
                 riceCount:count
             });
             this.setState({
-                ricePrice:count*40
+                ricePrice:count*(this.state.ricePriceFirebase-((this.state.riceSubsidy/100)*this.state.ricePriceFirebase))
             },()=>{
                 this.setState({
-                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice
+                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice,
+                    totalPriceFirebase:this.state.wheatCount*parseInt(this.state.wheatPriceFirebase)+this.state.riceCount*parseInt(this.state.ricePriceFirebase)+this.state.sugarCount*parseInt(this.state.sugarPriceFirebase)+this.state.dalCount*parseInt(this.state.dalPriceFirebase)+this.state.oilCount*parseInt(this.state.oilPriceFirebase),
+
                 },()=>{
                     this.setState({
                         totalPriceETH:(this.state.totalPrice*0.00000461).toFixed(6)
@@ -182,10 +256,12 @@ decreasePrice(item){
                 suagrCount:count
             });
             this.setState({
-                sugarPrice:count*40
+                sugarPrice:count*(this.state.sugarPriceFirebase-((this.state.sugarSubsidy/100)*this.state.sugarPriceFirebase))
             },()=>{
                 this.setState({
-                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice
+                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice,
+                    totalPriceFirebase:this.state.wheatCount*parseInt(this.state.wheatPriceFirebase)+this.state.riceCount*parseInt(this.state.ricePriceFirebase)+this.state.sugarCount*parseInt(this.state.sugarPriceFirebase)+this.state.dalCount*parseInt(this.state.dalPriceFirebase)+this.state.oilCount*parseInt(this.state.oilPriceFirebase),
+
                 },()=>{
                     this.setState({
                         totalPriceETH:(this.state.totalPrice*0.00000461).toFixed(6)
@@ -200,10 +276,12 @@ decreasePrice(item){
                 dalCount:count
             });
             this.setState({
-                dalPrice:count*40
+                dalPrice:count*(this.state.dalPriceFirebase-((this.state.dalSubsidy/100)*this.state.dalPriceFirebase))
             },()=>{
                 this.setState({
-                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice
+                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice,
+                    totalPriceFirebase:this.state.wheatCount*parseInt(this.state.wheatPriceFirebase)+this.state.riceCount*parseInt(this.state.ricePriceFirebase)+this.state.sugarCount*parseInt(this.state.sugarPriceFirebase)+this.state.dalCount*parseInt(this.state.dalPriceFirebase)+this.state.oilCount*parseInt(this.state.oilPriceFirebase),
+
                 },()=>{
                     this.setState({
                         totalPriceETH:(this.state.totalPrice*0.00000461).toFixed(6)
@@ -218,10 +296,12 @@ decreasePrice(item){
                oilCount:count
             });
             this.setState({
-                oilPrice:count*40
+                oilPrice:count*(this.state.oilPriceFirebase-((this.state.oilSubsidy/100)*this.state.oilPriceFirebase))
             },()=>{
                 this.setState({
-                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice
+                    totalPrice:this.state.wheatPrice+this.state.ricePrice+this.state.sugarPrice+this.state.dalPrice+this.state.oilPrice,
+                    totalPriceFirebase:this.state.wheatCount*parseInt(this.state.wheatPriceFirebase)+this.state.riceCount*parseInt(this.state.ricePriceFirebase)+this.state.sugarCount*parseInt(this.state.sugarPriceFirebase)+this.state.dalCount*parseInt(this.state.dalPriceFirebase)+this.state.oilCount*parseInt(this.state.oilPriceFirebase),
+
                 },()=>{
                     this.setState({
                         totalPriceETH:(this.state.totalPrice*0.00000461).toFixed(6)
@@ -319,7 +399,7 @@ render(){
     <div class="shopping-cart">
 
         <div class="title">
-            <b>Shopping Bag</b>
+            <b>Shopping Bag </b> <small>(below mentioned is subsidized price)</small>
         </div>
         <br></br>
         
@@ -451,7 +531,7 @@ render(){
                 <div id="headingSec">
                 <span class="content"><b>Items </b></span> <span class="contentQuantity"><b>Quantity </b></span> <span class="contentPrice"><b>Price</b></span> 
                 </div>
-                
+ 
                 <hr></hr>
                 <div class="commodity">
                     <div id="commo">
@@ -483,20 +563,21 @@ render(){
                     
                 </div>
                 <hr></hr>
-                <span class="totalIn" ><b>Total in Rs.</b></span> <span class="totalFull" id="totalPriceInRS">{this.state.totalPrice}</span><br></br>
-                 <span class="totalIn"><b>Total in ETH</b></span><span class="totalFull">{this.state.totalPriceETH}</span><br></br>
-                 <hr></hr>
+                <span class="totalIn" ><b>Total price(₹)</b></span> <span class="totalFull" id="totalPriceInRS">{this.state.totalPriceFirebase}</span><br></br>
+                <span class="totalIn" ><b>Subsized price(₹)</b></span> <span class="totalFull" id="totalPriceInRS">{this.state.totalPrice}</span><br></br>
+                <span class="totalIn"><b>Subsized price(ETH)</b></span><span class="totalFull">{this.state.totalPriceETH}</span><br></br>
+                <hr></hr>
             </div>
             <br></br>
             <br></br>
 
             <div class="sendSection">
                 <form>
-                    <input class="sendInputBox" placeholder="Enter Customer Acc address..." type="text"></input>
+                    <input class="sendInputBox" placeholder="Enter Shopkeeper Acc address..." type="text"></input>
                 </form>
                 <br></br>
                 <div class="sendReqSection">
-                    <button id="sendReqButton">Send Request</button>
+                    <button id="sendReqButton">Pay</button>
                 </div>
                 <br></br>
 

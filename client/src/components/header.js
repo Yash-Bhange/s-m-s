@@ -21,9 +21,6 @@ class Header extends Component {
       case 'admin':
         document.getElementById('adminBar').className='active'
         break;
-      case 'request':
-        document.getElementById('requestBar').className='active'
-        break;
       case 'rates':
         document.getElementById('rateBar').className='active'
         break;
@@ -42,7 +39,6 @@ class Header extends Component {
             <ul class="header">
                 <li><a id="homeBar" href="/home"> <i class="fa fa-home"></i> Home</a></li>
                 <li><a href="/shop" id="shopBar"><i class="fa fa-shopping-cart"></i> Shop</a></li>
-                <li><a href="/news" id="requestBar">Request</a></li>
                 <li><a href="/rates" id="rateBar"><i class="fa fa-percent"></i>Info</a></li>
                 <li><a href="/contact" id="aboutBar">Transactions</a></li>
                 <li class="right"><a href="/admin" id="adminBar"><i class="fa fa-lock"></i> Admin</a></li>
