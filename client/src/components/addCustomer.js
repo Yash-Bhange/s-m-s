@@ -9,10 +9,15 @@ class AddCustomer extends Component {
   constructor(props){
     super(props);
     this.state={
-      customerAddress:null
+      customerAddress:null,
+      name:null,
+      location:null
     }
     this.customerIdhandler=this.customerIdhandler.bind(this);
+    this.customerNameHandler=this.customerNameHandler.bind(this);
+    this.customerLocationHandler=this.customerLocationHandler.bind(this);
     this.onSubmit=this.onSubmit.bind(this);
+    
   }
 
 
@@ -24,6 +29,21 @@ class AddCustomer extends Component {
     
   }
 
+  customerNameHandler(event){
+    event.preventDefault();
+    this.setState({
+      name:event.target.value
+    })
+    
+  }
+  customerLocationHandler(event){
+    event.preventDefault();
+    this.setState({
+      location:event.target.value
+    })
+    
+  }
+
 
   async onSubmit(){
     var criteria=document.querySelector('input[name="radio1"]:checked').value;
@@ -31,43 +51,13 @@ class AddCustomer extends Component {
 
 
     const docRef = await addDoc(collection(db, "customers"), {
-      bcidid: this.state.customerAddress,
+      bcid: this.state.customerAddress,
       category:criteria,
-      name:"yash",
-      location:"nagpur"
+      name:this.state.name,
+      location:this.state.location
     });
     console.log("Document written with ID: ", docRef.id);
-
-    /*db.collection('customers').add({
-       bcid: this.state.customerAddress,
-       category:criteria,
-       name:"yash",
-       location:"nagpur"
-      })
-      .then((result)=>{
-        console.log("result : "+result)
-        alert("successfully registerd !")
-
-      })
-      .catch((err)=>{
-          console.log("error : "+err)
-          alert("error occured")
-      }) 
-  
-     collection(db,"customers").add({
-      id: this.state.customerAddress,
-      category:criteria,
-      name:"yash",
-      location:"nagpur"
-      }).then((result)=>{
-        console.log("result : "+result)
-        alert("successfully registerd !")
-
-      })
-      .catch((err)=>{
-          console.log("error : "+err)
-          alert("error occured")
-      })*/
+    alert("Customer added successfully !")
 
   }
 
@@ -89,6 +79,8 @@ class AddCustomer extends Component {
            
             
           <div className="form-group" id="customerIdSection">
+                 <input id="customerId" onChange={this.customerNameHandler} type="text" value={this.state.name} className="form-control" placeholder="Enter customer's name"  /><br></br>
+                 <input id="customerId" onChange={this.customerLocationHandler} type="text" value={this.state.location} className="form-control" placeholder="Enter customer's location"  /><br></br>
                  <input id="customerId" onChange={this.customerIdhandler} type="text" value={this.state.customerAddress} className="form-control" placeholder="Enter customer's Blockchain ID"  />
           </div>
           <br></br>
