@@ -1,5 +1,4 @@
 import React ,{Component} from 'react';
-import {BrowserRouter,Switch,Route,Redirect} from 'react-router-dom';
 import '../component_css/footer.css';
 
 class Footer extends Component {
@@ -42,15 +41,7 @@ class Footer extends Component {
                 <span><b>About the project</b></span>
                Subsidiary Management System using Blockchain for easy and Safe Allocation of Commodities !
                 </p>
-                
-                <div class="footer-icons">
-                
-                <a href="#"><i class="fa fa-facebook-f"></i></a>
-                <a href="#"><i class="fa fa-twitter-square"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
-                
-                </div>
+
                 
                 </div>
  
