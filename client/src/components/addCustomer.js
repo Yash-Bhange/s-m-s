@@ -100,7 +100,7 @@ class AddCustomer extends Component {
 
 
           <div id="addcustomerButtonSection">
-              <a  className="btn  btn-block" id="addcustomerButton" onClick={this.onSubmit} >Submit</a>
+              <button  className="btn  btn-block" id="addcustomerButton" onClick={this.onSubmit} >Submit</button>
           </div>
 
          </form>
