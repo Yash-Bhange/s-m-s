@@ -1,9 +1,8 @@
 import React ,{Component} from 'react';
-import {BrowserRouter,Switch,Route,Redirect} from 'react-router-dom';
 import '../component_css/admin.css';
 import Header from './header.js'
 import db from '../helper/firebase.js'
-import {Firestore,collection,setDoc,doc,getDocs,addDoc} from "firebase/firestore"; 
+import {collection,setDoc,doc,getDocs} from "firebase/firestore"; 
 
 
 class Admin extends Component {
@@ -69,6 +68,8 @@ class Admin extends Component {
   
                     });
                     break;
+               default:
+                     break;
           }
 
         
@@ -133,6 +134,8 @@ class Admin extends Component {
                 this.setState({
                     dalSubsidy:event.target.value
                 })
+                break;
+            default:
                 break;
 
         }
