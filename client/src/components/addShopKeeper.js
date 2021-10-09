@@ -2,7 +2,7 @@ import React ,{Component} from 'react';
 import '../component_css/addShopKeeper.css';
 import Header from './header.js'
 import db from '../helper/firebase.js'
-import { collection,doc, getDoc , addDoc } from "firebase/firestore"; 
+import { collection,addDoc } from "firebase/firestore"; 
 
 class AddShopkeeper extends Component {
 
@@ -81,7 +81,7 @@ class AddShopkeeper extends Component {
           <br></br>
 
           <div id="addShopKeeperButtonSection">
-              <a onClick={this.onSubmit} className="btn  btn-block" id="addShopKeeperButton" >Submit</a>
+              <button onClick={this.onSubmit} className="btn  btn-block" id="addShopKeeperButton" >Submit </button>
           </div>
           
              
