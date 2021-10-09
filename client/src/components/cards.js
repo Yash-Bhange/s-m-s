@@ -1,14 +1,12 @@
 import React from 'react'
 import CardItem from './cardItem.js'
 import '../component_css/cards.css'
-import tools_convenience from '../static/tools-convenience.jpg'
-import choice from '../static/choice.jpg'
 import allocation from '../static/allocation.jpg'
 import subsidy from '../static/subsidy.jpg'
 import pay from '../static/pay.jpeg'
 import automation from '../static/automation.jpg'
 import digi_safety from '../static/digital-safety.jpg'
-import img5 from '../static/img5.jpg'
+
 function Cards() {
     return (
         <div className='cards'>
