@@ -1,0 +1,31 @@
+
+body{
+    text-align: center;
+}
+#addAmountButton{
+    background-color: #068053;
+    padding: 10px;
+    border-radius: 10px;
+}
+#addAmountSection{
+    text-align: center;
+    
+}
+#addAmountButton:active{
+    background-color: gray;
+    border: black solid ;
+}
+
+#amount{
+    width: 40%;
+    margin : 0 auto;
+    
+}
+
+@media (max-width: 800px) {
+
+    #amount{
+        width: 80%;
+    }
+   
+}

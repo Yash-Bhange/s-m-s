@@ -1,0 +1,35 @@
+ul.header {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:rgb(231, 231, 231);
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+   
+  }
+  
+  ul.header li {float: left;}
+  
+  ul.header li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 25px;
+    text-decoration: none;
+  }
+  
+  ul.header li a:hover:not(.active) {background-color: rgb(155, 155, 155);}
+  
+  ul.header li a.active {background-color: #04AA6D;}
+  
+  ul.header li.right {float: right;}
+  
+  @media screen and (max-width: 600px) {
+    ul.header li.right, 
+    ul.header li {float: none;}
+    ul.header li a{
+        padding: 14px 16px;
+    }
+  }
