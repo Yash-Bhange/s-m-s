@@ -44,7 +44,7 @@ class AddFunds extends Component {
           if (err) {
             alert("Not Success");
           } else {
-            alert("Successful !");
+            alert("Successful!");
           }
         }
       );

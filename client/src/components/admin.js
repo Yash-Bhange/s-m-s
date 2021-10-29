@@ -170,7 +170,7 @@ class Admin extends Component {
       this.props.AbiAndAdd.add
     );
     var funds = await Subsidy.methods.showBalance().call();
-    // console.log(funds);
+
     funds = Web3.utils.fromWei(funds, "ether");
     this.setState({ Funds: funds });
   }
