@@ -5,6 +5,7 @@ import db from "../helper/firebase.js";
 import { collection, setDoc, doc, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import Web3 from "web3";
+
 class Admin extends Component {
   constructor(props) {
     super(props);
@@ -176,237 +177,242 @@ class Admin extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Header activeSection="admin" />
-        <br></br>
-        <br></br>
+    if (this.props.admin) {
+      return (
+        <div>
+          <Header activeSection="admin" />
+          <br></br>
+          <br></br>
 
-        <div id="addUserSection">
-          <div id="totalMoney" class="adminButtons">
-            <span>Total Amount Remaining : </span> <b>{this.state.Funds} ETH</b>
-          </div>
-
-          <div id="addCustomer" class="adminButtons">
-            <Link to="/add-customer">
-              {" "}
-              <button class="adminButton1">Add Customer</button>
-            </Link>
-          </div>
-          <div id="addShopkeeper" class="adminButtons">
-            <Link to="/add-shopkeeper">
-              <button class="adminButton1">Add ShopKepper</button>
-            </Link>
-          </div>
-
-          <div id="addShopkeeper" class="adminButtons">
-            <Link to="/add-Funds">
-              <button class="adminButton1">Add Funds</button>
-            </Link>
-          </div>
-          <div id="addShopkeeper" class="adminButtons">
-            <button onClick={this.seeFunds} class="adminButton1">
-              See Funds
-            </button>
-          </div>
-        </div>
-
-        <br></br>
-        <br></br>
-        <br></br>
-
-        <div id="adminContainer">
-          <div id="adminRates">
-            <div class="headingColor">
-              <hr></hr>
-              <b>
-                <big>
-                  <center>
-                    <span>Rates</span>
-                  </center>
-                </big>
-              </b>{" "}
-              <hr></hr>
+          <div id="addUserSection">
+            <div id="totalMoney" class="adminButtons">
+              <span>Total Amount Remaining : </span>{" "}
+              <b>{this.state.Funds} ETH</b>
             </div>
-            <br></br>
-            <br></br>
-            <hr></hr>
-            <div id="adminHeadingSec">
-              <span class="adminContent">
-                <b>Items</b>
-              </span>{" "}
-              <span class="adminContentQuantity">
-                <b>Rates In RS.</b>
-              </span>{" "}
-              <span class="adminContentPrice">
-                <b>Subsidy in % </b>
-              </span>
+
+            <div id="addCustomer" class="adminButtons">
+              <Link to="/add-customer">
+                {" "}
+                <button class="adminButton1">Add Customer</button>
+              </Link>
             </div>
-            <hr></hr>
-            <br></br>
-
-            <div class="adminCommodity">
-              <div id="adminCommo">
-                <span class="commo-name">Wheat </span> <br></br> <br></br>
-                <span class="commo-name">Rice </span> <br></br> <br></br>
-                <span class="commo-name">Sugar </span> <br></br> <br></br>
-                <span class="commo-name">dal </span> <br></br> <br></br>
-                <span class="commo-name">oil </span> <br></br> <br></br>
-              </div>
-              <div id="adminCommoQuantity">
-                <span class="commoQ">
-                  <input
-                    type="text"
-                    onChange={this.rateHandler}
-                    value={this.state.wheatPrice}
-                    class="adminRatesInputBox"
-                    name="wheatPrice"
-                    placeholder="in KG"
-                  ></input>
-                </span>
-                <br></br> <br></br>
-                <span class="commoQ">
-                  <input
-                    type="text"
-                    onChange={this.rateHandler}
-                    value={this.state.ricePrice}
-                    class="adminRatesInputBox"
-                    name="ricePrice"
-                    placeholder="in KG"
-                  ></input>
-                </span>
-                <br></br> <br></br>
-                <span class="commoQ">
-                  <input
-                    type="text"
-                    onChange={this.rateHandler}
-                    value={this.state.sugarPrice}
-                    class="adminRatesInputBox"
-                    name="sugarPrice"
-                    placeholder="in KG"
-                  ></input>
-                </span>
-                <br></br> <br></br>
-                <span class="commoQ">
-                  <input
-                    type="text"
-                    onChange={this.rateHandler}
-                    value={this.state.dalPrice}
-                    class="adminRatesInputBox"
-                    name="dalPrice"
-                    placeholder="in KG"
-                  ></input>
-                </span>
-                <br></br> <br></br>
-                <span class="commoQ">
-                  <input
-                    type="text"
-                    onChange={this.rateHandler}
-                    value={this.state.oilPrice}
-                    class="adminRatesInputBox"
-                    name="oilPrice"
-                    placeholder="in LT"
-                  ></input>
-                </span>
-                <br></br> <br></br>
-              </div>
-
-              <div id="adminCommoPrice">
-                <span class="commo-price">
-                  <b>
-                    <input
-                      onChange={this.rateHandler}
-                      value={this.state.wheatSubsidy}
-                      type="text"
-                      class="adminSubInputBox"
-                      name="wheatSubsidy"
-                      placeholder="%"
-                    ></input>
-                  </b>
-                </span>{" "}
-                <br></br> <br></br>
-                <span class="commo-price">
-                  <b>
-                    <input
-                      onChange={this.rateHandler}
-                      value={this.state.riceSubsidy}
-                      type="text"
-                      class="adminSubInputBox"
-                      name="riceSubsidy"
-                      placeholder="%"
-                    ></input>
-                  </b>
-                </span>{" "}
-                <br></br> <br></br>
-                <span class="commo-price">
-                  <b>
-                    <input
-                      onChange={this.rateHandler}
-                      value={this.state.sugarSubsidy}
-                      type="text"
-                      class="adminSubInputBox"
-                      name="sugarSubsidy"
-                      placeholder="%"
-                    ></input>
-                  </b>
-                </span>{" "}
-                <br></br> <br></br>
-                <span class="commo-price">
-                  <b>
-                    <input
-                      onChange={this.rateHandler}
-                      value={this.state.dalSubsidy}
-                      type="text"
-                      class="adminSubInputBox"
-                      name="dalSubsidy"
-                      placeholder="%"
-                    ></input>
-                  </b>
-                </span>{" "}
-                <br></br> <br></br>
-                <span class="commo-price">
-                  <b>
-                    <input
-                      onChange={this.rateHandler}
-                      value={this.state.oilSubsidy}
-                      type="text"
-                      class="adminSubInputBox"
-                      name="oilSubsidy"
-                      placeholder="%"
-                    ></input>
-                  </b>
-                </span>{" "}
-                <br></br> <br></br>
-              </div>
+            <div id="addShopkeeper" class="adminButtons">
+              <Link to="/add-shopkeeper">
+                <button class="adminButton1">Add ShopKepper</button>
+              </Link>
             </div>
-            <hr></hr>
-            <br></br>
-            <br></br>
 
-            <div class="adminUpdateButtonSection">
-              <button onClick={this.updateHandler} id="adminUpdateButton">
-                <b>Update</b>
+            <div id="addShopkeeper" class="adminButtons">
+              <Link to="/add-Funds">
+                <button class="adminButton1">Add Funds</button>
+              </Link>
+            </div>
+            <div id="addShopkeeper" class="adminButtons">
+              <button onClick={this.seeFunds} class="adminButton1">
+                See Funds
               </button>
             </div>
-            <br></br>
-            <br></br>
           </div>
-          <div id="adminRequest">
-            <div class="headingColor">
+
+          <br></br>
+          <br></br>
+          <br></br>
+
+          <div id="adminContainer">
+            <div id="adminRates">
+              <div class="headingColor">
+                <hr></hr>
+                <b>
+                  <big>
+                    <center>
+                      <span>Rates</span>
+                    </center>
+                  </big>
+                </b>{" "}
+                <hr></hr>
+              </div>
+              <br></br>
+              <br></br>
               <hr></hr>
-              <b>
-                <big>
-                  <center>
-                    <span>Pending Request</span>
-                  </center>
-                </big>
-              </b>{" "}
+              <div id="adminHeadingSec">
+                <span class="adminContent">
+                  <b>Items</b>
+                </span>{" "}
+                <span class="adminContentQuantity">
+                  <b>Rates In RS.</b>
+                </span>{" "}
+                <span class="adminContentPrice">
+                  <b>Subsidy in % </b>
+                </span>
+              </div>
               <hr></hr>
+              <br></br>
+
+              <div class="adminCommodity">
+                <div id="adminCommo">
+                  <span class="commo-name">Wheat </span> <br></br> <br></br>
+                  <span class="commo-name">Rice </span> <br></br> <br></br>
+                  <span class="commo-name">Sugar </span> <br></br> <br></br>
+                  <span class="commo-name">dal </span> <br></br> <br></br>
+                  <span class="commo-name">oil </span> <br></br> <br></br>
+                </div>
+                <div id="adminCommoQuantity">
+                  <span class="commoQ">
+                    <input
+                      type="text"
+                      onChange={this.rateHandler}
+                      value={this.state.wheatPrice}
+                      class="adminRatesInputBox"
+                      name="wheatPrice"
+                      placeholder="in KG"
+                    ></input>
+                  </span>
+                  <br></br> <br></br>
+                  <span class="commoQ">
+                    <input
+                      type="text"
+                      onChange={this.rateHandler}
+                      value={this.state.ricePrice}
+                      class="adminRatesInputBox"
+                      name="ricePrice"
+                      placeholder="in KG"
+                    ></input>
+                  </span>
+                  <br></br> <br></br>
+                  <span class="commoQ">
+                    <input
+                      type="text"
+                      onChange={this.rateHandler}
+                      value={this.state.sugarPrice}
+                      class="adminRatesInputBox"
+                      name="sugarPrice"
+                      placeholder="in KG"
+                    ></input>
+                  </span>
+                  <br></br> <br></br>
+                  <span class="commoQ">
+                    <input
+                      type="text"
+                      onChange={this.rateHandler}
+                      value={this.state.dalPrice}
+                      class="adminRatesInputBox"
+                      name="dalPrice"
+                      placeholder="in KG"
+                    ></input>
+                  </span>
+                  <br></br> <br></br>
+                  <span class="commoQ">
+                    <input
+                      type="text"
+                      onChange={this.rateHandler}
+                      value={this.state.oilPrice}
+                      class="adminRatesInputBox"
+                      name="oilPrice"
+                      placeholder="in LT"
+                    ></input>
+                  </span>
+                  <br></br> <br></br>
+                </div>
+
+                <div id="adminCommoPrice">
+                  <span class="commo-price">
+                    <b>
+                      <input
+                        onChange={this.rateHandler}
+                        value={this.state.wheatSubsidy}
+                        type="text"
+                        class="adminSubInputBox"
+                        name="wheatSubsidy"
+                        placeholder="%"
+                      ></input>
+                    </b>
+                  </span>{" "}
+                  <br></br> <br></br>
+                  <span class="commo-price">
+                    <b>
+                      <input
+                        onChange={this.rateHandler}
+                        value={this.state.riceSubsidy}
+                        type="text"
+                        class="adminSubInputBox"
+                        name="riceSubsidy"
+                        placeholder="%"
+                      ></input>
+                    </b>
+                  </span>{" "}
+                  <br></br> <br></br>
+                  <span class="commo-price">
+                    <b>
+                      <input
+                        onChange={this.rateHandler}
+                        value={this.state.sugarSubsidy}
+                        type="text"
+                        class="adminSubInputBox"
+                        name="sugarSubsidy"
+                        placeholder="%"
+                      ></input>
+                    </b>
+                  </span>{" "}
+                  <br></br> <br></br>
+                  <span class="commo-price">
+                    <b>
+                      <input
+                        onChange={this.rateHandler}
+                        value={this.state.dalSubsidy}
+                        type="text"
+                        class="adminSubInputBox"
+                        name="dalSubsidy"
+                        placeholder="%"
+                      ></input>
+                    </b>
+                  </span>{" "}
+                  <br></br> <br></br>
+                  <span class="commo-price">
+                    <b>
+                      <input
+                        onChange={this.rateHandler}
+                        value={this.state.oilSubsidy}
+                        type="text"
+                        class="adminSubInputBox"
+                        name="oilSubsidy"
+                        placeholder="%"
+                      ></input>
+                    </b>
+                  </span>{" "}
+                  <br></br> <br></br>
+                </div>
+              </div>
+              <hr></hr>
+              <br></br>
+              <br></br>
+
+              <div class="adminUpdateButtonSection">
+                <button onClick={this.updateHandler} id="adminUpdateButton">
+                  <b>Update</b>
+                </button>
+              </div>
+              <br></br>
+              <br></br>
+            </div>
+            <div id="adminRequest">
+              <div class="headingColor">
+                <hr></hr>
+                <b>
+                  <big>
+                    <center>
+                      <span>Pending Request</span>
+                    </center>
+                  </big>
+                </b>{" "}
+                <hr></hr>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <h1>403 Forbidden</h1>;
+    }
   }
 }
 

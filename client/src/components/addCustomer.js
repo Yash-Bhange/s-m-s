@@ -64,7 +64,7 @@ class AddCustomer extends Component {
         if (err) {
           alert("Not a Admin");
         } else {
-          alert("SuccesS !");
+          alert("Success!");
         }
       });
   }

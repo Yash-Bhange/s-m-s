@@ -644,7 +644,12 @@ class Shop extends Component {
   render() {
     return (
       <div>
-        <Header activeSection="shop" />
+        <Header
+          verified_user={this.props.verified_user}
+          admin={this.props.admin}
+          account={this.props.account}
+          activeSection="shop"
+        />
         <br></br>
         <br></br>
         <div class="shopping-cart">

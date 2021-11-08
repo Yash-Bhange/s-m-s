@@ -115,4 +115,19 @@ contract subsidy {
         (bool sent, bytes memory data) = shop_add.call{value: msg.value}("");
         require(sent, "Failed to send Ether");
     }
+
+    function isUser(address add) public view returns (bool) {
+        if (customers[add].start_date > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isAdmin(address add) public view returns (bool) {
+        if (add == owner) {
+            return true;
+        }
+        return false;
+    }
 }
