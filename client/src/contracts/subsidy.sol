@@ -9,8 +9,14 @@ contract subsidy {
 
     address public owner;
 
+    enum CATEGORY {
+        BPL,
+        APL,
+        REFUGEE
+    }
+
     //add public
-    constructor() public {
+    constructor() {
         owner = msg.sender;
     }
 
@@ -33,6 +39,7 @@ contract subsidy {
         string name;
         // uint256 monthly_limit;
         uint256 start_date;
+        CATEGORY cat;
     }
 
     struct Shopkepper {
@@ -59,12 +66,22 @@ contract subsidy {
         shopkeppers[address_] = shopkepper;
     }
 
-    function addCustomer(address address_, string memory name_)
-        public
-        onlyOwner
-    {
+    function addCustomer(
+        address address_,
+        string memory name_,
+        uint256 cat
+    ) public onlyOwner {
         uint256 start_date = block.timestamp;
-        Customer memory customer = Customer(address_, name_, start_date);
+        CATEGORY cat_;
+        if (cat == 0) {
+            cat_ = CATEGORY.BPL;
+        } else if (cat == 1) {
+            cat_ = CATEGORY.APL;
+        } else {
+            cat_ = CATEGORY.REFUGEE;
+        }
+
+        Customer memory customer = Customer(address_, name_, start_date, cat_);
         customers[address_] = customer;
     }
 
@@ -84,9 +101,18 @@ contract subsidy {
         return customers[address_].name;
     }
 
+    function showCcatergory(address address_) public view returns (CATEGORY) {
+        return customers[address_].cat;
+    }
+
     function addFunds() external payable onlyOwner {}
 
     function showBalance() public view onlyOwner returns (uint256) {
         return address(this).balance;
+    }
+
+    function payment(address payable shop_add) external payable {
+        (bool sent, bytes memory data) = shop_add.call{value: msg.value}("");
+        require(sent, "Failed to send Ether");
     }
 }

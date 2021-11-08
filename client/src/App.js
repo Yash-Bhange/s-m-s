@@ -123,7 +123,13 @@ class App extends Component {
             <Route
               exact
               path="/add-customer"
-              component={() => <AddCustomer />}
+              component={() => (
+                <AddCustomer
+                  web3={this.state.web3}
+                  AbiAndAdd={this.state.AbiAndAdd}
+                  account={this.state.currentAccount}
+                />
+              )}
             />
             <Route
               exact

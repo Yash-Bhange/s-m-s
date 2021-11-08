@@ -11,11 +11,13 @@ class AddCustomer extends Component {
       customerAddress: null,
       name: null,
       location: null,
+      category: null,
     };
     this.customerIdhandler = this.customerIdhandler.bind(this);
     this.customerNameHandler = this.customerNameHandler.bind(this);
     this.customerLocationHandler = this.customerLocationHandler.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.customerCategoryHandler = this.customerCategoryHandler.bind(this);
   }
 
   customerIdhandler(event) {
@@ -37,6 +39,13 @@ class AddCustomer extends Component {
       location: event.target.value,
     });
   }
+  async customerCategoryHandler(event) {
+    event.preventDefault();
+    await this.setState({
+      category: event.target.value,
+    });
+    console.log(this.state.category);
+  }
 
   async onSubmit() {
     const Subsidy = new window.web3.eth.Contract(
@@ -46,7 +55,11 @@ class AddCustomer extends Component {
     console.log(Subsidy);
     console.log(this.props.account, this.state.name);
     await Subsidy.methods
-      .addCustomer(this.state.customerAddress, this.state.name)
+      .addCustomer(
+        this.state.customerAddress,
+        this.state.name,
+        this.state.category
+      )
       .send({ from: this.props.account }, (err, hash) => {
         if (err) {
           alert("Not a Admin");
@@ -96,11 +109,26 @@ class AddCustomer extends Component {
           <br></br>
           <div id="radioSection">
             <div id="radioSectionLeft">
-              <input type="radio" name="radio1" value="refugee"></input>
+              <input
+                onChange={this.customerCategoryHandler}
+                type="radio"
+                name="radio1"
+                value="2"
+              ></input>
               <label>&emsp; Refugee </label> <br></br>
-              <input type="radio" name="radio1" value="apl"></input>
+              <input
+                onChange={this.customerCategoryHandler}
+                type="radio"
+                name="radio1"
+                value="1"
+              ></input>
               <label>&emsp; Above Poverty Line </label> <br></br>
-              <input type="radio" name="radio1" value="bpl"></input>
+              <input
+                onChange={this.customerCategoryHandler}
+                type="radio"
+                name="radio1"
+                value="0"
+              ></input>
               <label>&emsp; Below Poverty Line </label> <br></br>
             </div>
           </div>
