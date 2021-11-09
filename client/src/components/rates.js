@@ -25,14 +25,16 @@ class Rates extends Component {
       oilSubsidy: null,
       sugarSubsidy: null,
       dalSubsidy: null,
+      category: this.props.category,
     };
   }
 
   async componentWillMount() {
-    console.log("yash Bhange");
-    const querySnapshot = await getDocs(collection(db, "rates"));
+    // console.log("yash Bhange");
+    const querySnapshot = await getDocs(collection(db, this.state.category));
+
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
+      // console.log(doc.id, " => ", doc.data());
       switch (doc.data().item) {
         case "wheat":
           this.setState({
@@ -87,7 +89,10 @@ class Rates extends Component {
               <b>
                 <big>
                   <center>
-                    <span>Rates</span>
+                    <span>
+                      Rates for your category:
+                      {this.state.category.split("_")[1]}
+                    </span>
                   </center>
                 </big>
               </b>{" "}

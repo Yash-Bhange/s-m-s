@@ -48,6 +48,7 @@ class Shop extends Component {
       totalinETH: 0,
       totalPrice: 0,
       shop_address: "",
+      category: this.props.category,
     };
     this.minusButton = this.minusButton.bind(this);
     this.plusButton = this.plusButton.bind(this);
@@ -58,7 +59,7 @@ class Shop extends Component {
   }
 
   async componentWillMount() {
-    const querySnapshot = await getDocs(collection(db, "rates"));
+    const querySnapshot = await getDocs(collection(db, this.state.category));
     querySnapshot.forEach((doc) => {
       // console.log(doc.id, " => ", doc.data());
       switch (doc.data().item) {

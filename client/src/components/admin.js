@@ -21,18 +21,25 @@ class Admin extends Component {
       sugarSubsidy: null,
       dalSubsidy: null,
       Funds: "***",
+      category: "rates_BPL",
     };
 
     this.rateHandler = this.rateHandler.bind(this);
     this.updateHandler = this.updateHandler.bind(this);
     this.seeFunds = this.seeFunds.bind(this);
+    this.rateSelectHandler = this.rateSelectHandler.bind(this);
+    this.loadData = this.loadData.bind(this);
   }
 
   async componentWillMount() {
-    console.log("yash Bhange");
-    const querySnapshot = await getDocs(collection(db, "rates"));
+    this.loadData(this.state.category);
+  }
+
+  async loadData(rate) {
+    // console.log("yash Bhange");
+    const querySnapshot = await getDocs(collection(db, rate));
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
+      // console.log(doc.id, " => ", doc.data());
       switch (doc.data().item) {
         case "wheat":
           this.setState({
@@ -69,7 +76,13 @@ class Admin extends Component {
       }
     });
   }
-
+  async rateSelectHandler(event) {
+    event.preventDefault();
+    await this.setState({
+      category: event.target.value,
+    });
+    this.loadData(this.state.category);
+  }
   rateHandler(event) {
     event.preventDefault();
     switch (event.target.name) {
@@ -130,39 +143,106 @@ class Admin extends Component {
   }
 
   async updateHandler(event) {
-    //for oil
-    await setDoc(doc(db, "rates", "2LyiEeHU5SvVcLN8akP7"), {
-      valuePerKg: this.state.oilPrice,
-      subsidy: this.state.oilSubsidy,
-      item: "oil",
-    });
-    console.log("end1");
-    //for whaet
-    await setDoc(doc(db, "rates", "hlo1tyui4grQwAzqYzDP"), {
-      valuePerKg: this.state.wheatPrice,
-      subsidy: this.state.wheatSubsidy,
-      item: "wheat",
-    });
-    //for rice
-    await setDoc(doc(db, "rates", "Vz55PP8U4iIf9slozQfF"), {
-      valuePerKg: this.state.ricePrice,
-      subsidy: this.state.riceSubsidy,
-      item: "rice",
-    });
-    //for sugar
-    await setDoc(doc(db, "rates", "l650Eb1orpdThwQiVXZe"), {
-      valuePerKg: this.state.sugarPrice,
-      subsidy: this.state.sugarSubsidy,
-      item: "sugar",
-    });
-    //fordal
-    await setDoc(doc(db, "rates", "HcK4CInBqQxs7Y0Y77eb"), {
-      valuePerKg: this.state.dalPrice,
-      subsidy: this.state.dalSubsidy,
-      item: "dal",
-    });
+    if (this.state.category == "rates_BPL") {
+      await setDoc(doc(db, "rates_BPL", "fvuP5gS8hDbmpA3A0kV9S"), {
+        valuePerKg: this.state.oilPrice,
+        subsidy: this.state.oilSubsidy,
+        item: "oil",
+      });
+      console.log("end1");
+      //for whaet
+      await setDoc(doc(db, "rates_BPL", "TFaYXdaYWrQglJjKFJlt"), {
+        valuePerKg: this.state.wheatPrice,
+        subsidy: this.state.wheatSubsidy,
+        item: "wheat",
+      });
+      //for rice
+      await setDoc(doc(db, "rates_BPL", "ovCbYmoiQGMhdLtBNDss"), {
+        valuePerKg: this.state.ricePrice,
+        subsidy: this.state.riceSubsidy,
+        item: "rice",
+      });
+      //for sugar
+      await setDoc(doc(db, "rates_BPL", "TfKXaCtBaiadBIMDu2yj"), {
+        valuePerKg: this.state.sugarPrice,
+        subsidy: this.state.sugarSubsidy,
+        item: "sugar",
+      });
+      //fordal
+      await setDoc(doc(db, "rates_BPL", "4Syso0uamWopqj1AcFV6"), {
+        valuePerKg: this.state.dalPrice,
+        subsidy: this.state.dalSubsidy,
+        item: "dal",
+      });
 
-    alert("successfully updated !");
+      alert("successfully updated BPL rates !");
+    } else if (this.state.category == "rates_APL") {
+      await setDoc(doc(db, "rates_APL", "g7omuEMjJAG5uElqEDhe"), {
+        valuePerKg: this.state.oilPrice,
+        subsidy: this.state.oilSubsidy,
+        item: "oil",
+      });
+      console.log("end1");
+      //for whaet
+      await setDoc(doc(db, "rates_APL", "Zf02gCQ7T8t9rqvqkvjM"), {
+        valuePerKg: this.state.wheatPrice,
+        subsidy: this.state.wheatSubsidy,
+        item: "wheat",
+      });
+      //for rice
+      await setDoc(doc(db, "rates_APL", "kIS9NJBOytKLA6eld4M9"), {
+        valuePerKg: this.state.ricePrice,
+        subsidy: this.state.riceSubsidy,
+        item: "rice",
+      });
+      //for sugar
+      await setDoc(doc(db, "rates_APL", "xAi647vslfV4oW51Zknq"), {
+        valuePerKg: this.state.sugarPrice,
+        subsidy: this.state.sugarSubsidy,
+        item: "sugar",
+      });
+      //fordal
+      await setDoc(doc(db, "rates_APL", "bANFHXJcKscxdqlDZMto"), {
+        valuePerKg: this.state.dalPrice,
+        subsidy: this.state.dalSubsidy,
+        item: "dal",
+      });
+
+      alert("successfully updated APL rates!");
+    } else if (this.state.category == "rates_REFUGEE") {
+      await setDoc(doc(db, "rates_REFUGEE", "wYUugSGmsIq5Qbs8ldqq"), {
+        valuePerKg: this.state.oilPrice,
+        subsidy: this.state.oilSubsidy,
+        item: "oil",
+      });
+      console.log("end1");
+      //for whaet
+      await setDoc(doc(db, "rates_REFUGEE", "aEIjXiRjqa9eq1ajaytc"), {
+        valuePerKg: this.state.wheatPrice,
+        subsidy: this.state.wheatSubsidy,
+        item: "wheat",
+      });
+      //for rice
+      await setDoc(doc(db, "rates_REFUGEE", "RCXbFod1Lyct2p689sGB"), {
+        valuePerKg: this.state.ricePrice,
+        subsidy: this.state.riceSubsidy,
+        item: "rice",
+      });
+      //for sugar
+      await setDoc(doc(db, "rates_REFUGEE", "l9jcsqiaeXkKUHdZpwni"), {
+        valuePerKg: this.state.sugarPrice,
+        subsidy: this.state.sugarSubsidy,
+        item: "sugar",
+      });
+      //fordal
+      await setDoc(doc(db, "rates_REFUGEE", "Y7Cv2rQZ5GekAZpn0wHc"), {
+        valuePerKg: this.state.dalPrice,
+        subsidy: this.state.dalSubsidy,
+        item: "dal",
+      });
+
+      alert("successfully updated REFUGEE rates!");
+    }
   }
 
   async seeFunds(event) {
@@ -225,7 +305,12 @@ class Admin extends Component {
                 <b>
                   <big>
                     <center>
-                      <span>Rates</span>
+                      <span>Rates </span>
+                      <select onChange={this.rateSelectHandler}>
+                        <option value="rates_BPL">BPL</option>
+                        <option value="rates_APL">APL</option>
+                        <option value="rates_REFUGEE">REFUGEE</option>
+                      </select>
                     </center>
                   </big>
                 </b>{" "}

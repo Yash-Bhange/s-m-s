@@ -20,6 +20,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      categories: ["rates_BPL", "rates_APL", "rates_REFUGEE"],
       currentAccount: "",
       account: "",
       AbiAndAdd: {
@@ -29,6 +30,7 @@ class App extends Component {
       web3: null,
       verified_user: false,
       admin: false,
+      category: "",
     };
   }
 
@@ -51,7 +53,7 @@ class App extends Component {
   }
 
   async loadBlockchainData() {
-    console.log("loading....");
+    // console.log("loading....");
     try {
       const web3 = window.web3;
       this.setState({ web3: web3 });
@@ -63,11 +65,11 @@ class App extends Component {
 
       const networkId = await web3.eth.net.getId();
       const networkData = subsidy.networks[networkId];
-      console.log(networkData);
+      // console.log(networkData);
       console.log("current_account:" + this.state.currentAccount);
       if (networkData) {
         const Subsidy = new web3.eth.Contract(subsidy.abi, networkData.address);
-        console.log(Subsidy);
+        // console.log(Subsidy);
         this.setState({
           AbiAndAdd: {
             abi: subsidy.abi,
@@ -83,21 +85,25 @@ class App extends Component {
           .call();
 
         if (isUser) {
-          this.setState({ verified_user: true });
+          await this.setState({ verified_user: true });
         } else if (isAdmin) {
-          console.log("lund2");
-          this.setState({ admin: true });
+          await this.setState({ admin: true });
         }
 
         // console.log(this.state);
         if (isUser) {
           console.log("Verified User");
+          let cat = await Subsidy.methods
+            .showCcatergory(this.state.currentAccount)
+            .call();
+          await this.setState({ category: this.state.categories[cat] });
+          console.log(this.state.category);
         } else if (isAdmin) {
-          console.log("Admin");
+          // console.log("Admin");
         } else {
           window.alert("Unverified User");
         }
-        console.log(this.state.verified_user, this.state.admin);
+        // console.log(this.state.verified_user, this.state.admin);
       } else {
         window.alert("Cannot find the contract on selected  network.");
       }
@@ -127,6 +133,7 @@ class App extends Component {
               path="/shop"
               component={() => (
                 <Shop
+                  category={this.state.category}
                   verified_user={this.state.verified_user}
                   admin={this.state.admin}
                   web3={this.state.web3}
@@ -153,6 +160,7 @@ class App extends Component {
               path="/rates"
               component={() => (
                 <Rates
+                  category={this.state.category}
                   verified_user={this.state.verified_user}
                   admin={this.state.admin}
                   account={this.state.currentAccount}
