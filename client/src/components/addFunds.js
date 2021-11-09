@@ -55,7 +55,7 @@ class AddFunds extends Component {
     return (
       <div>
         <div>
-          <Header activeSection="admin" />
+          <Header activeSection="admin" admin={this.props.admin} />
           <br></br>
           <br></br>
           <br></br>

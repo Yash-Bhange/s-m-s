@@ -180,7 +180,7 @@ class Admin extends Component {
     if (this.props.admin) {
       return (
         <div>
-          <Header activeSection="admin" />
+          <Header activeSection="admin" admin={this.props.admin} />
           <br></br>
           <br></br>
 

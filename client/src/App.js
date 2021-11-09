@@ -164,6 +164,7 @@ class App extends Component {
               path="/add-shopkeeper"
               component={() => (
                 <AddShopkeeper
+                  admin={this.state.admin}
                   web3={this.state.web3}
                   AbiAndAdd={this.state.AbiAndAdd}
                   account={this.state.currentAccount}
@@ -175,6 +176,7 @@ class App extends Component {
               path="/add-customer"
               component={() => (
                 <AddCustomer
+                  admin={this.state.admin}
                   web3={this.state.web3}
                   AbiAndAdd={this.state.AbiAndAdd}
                   account={this.state.currentAccount}
@@ -186,6 +188,7 @@ class App extends Component {
               path="/add-Funds"
               component={() => (
                 <AddFunds
+                  admin={this.state.admin}
                   web3={this.state.web3}
                   AbiAndAdd={this.state.AbiAndAdd}
                   account={this.state.currentAccount}
