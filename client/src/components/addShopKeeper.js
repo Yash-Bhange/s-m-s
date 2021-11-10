@@ -1,102 +1,137 @@
-import React ,{Component} from 'react';
-import '../component_css/addShopKeeper.css';
-import Header from './header.js'
-import db from '../helper/firebase.js'
-import { collection,addDoc } from "firebase/firestore"; 
+import React, { Component } from "react";
+import { BrowserRouter, Switch, Route, Redirect, Link } from "react-router-dom";
+import "../component_css/header.css";
 
-class AddShopkeeper extends Component {
-
-  constructor(props){
+class Header extends Component {
+  constructor(props) {
     super(props);
-    this.state={
-      shopKeeperAddress:null,
-      name:null,
-      location:null
+    console.log(this.props.activeSection);
+    console.log(this.props);
+  }
+
+  componentDidMount() {
+    switch (this.props.activeSection) {
+      case "home":
+        document.getElementById("homeBar").className = "active";
+        break;
+      case "shop":
+        document.getElementById("shopBar").className = "active";
+        break;
+      case "admin":
+        document.getElementById("adminBar").className = "active";
+        break;
+      case "rates":
+        document.getElementById("rateBar").className = "active";
+        break;
+      case "admin":
+        document.getElementById("adminBar").className = "active";
+        break;
     }
-    this.shopKeeperNameHandler=this.shopKeeperNameHandler.bind(this);
-    this.shopKeeperLocationHandler=this.shopKeeperLocationHandler.bind(this);
-    this.shopKeeperIdhandler=this.shopKeeperIdhandler.bind(this);
-    this.onSubmit=this.onSubmit.bind(this);
   }
 
-  shopKeeperIdhandler(event){
-    event.preventDefault();
-    this.setState({
-      shopKeeperAddress:event.target.value
-    })
-    
-  }
-  shopKeeperNameHandler(event){
-    event.preventDefault();
-    this.setState({
-      name:event.target.value
-    })
-    
-  }
-  shopKeeperLocationHandler(event){
-    event.preventDefault();
-    this.setState({
-      location:event.target.value
-    })
-    
-  }
-
-  async onSubmit(){
-   
-    console.log(this.state.shopKeeperAddress);
-
-    const docRef = await addDoc(collection(db, "shopkeepers"), {
-      bcid: this.state.shopKeeperAddress,
-      name:this.state.name,
-      location:this.state.location
-    });
-    console.log("Document written with ID: ", docRef.id);
-    alert("ShopKeeper added successfully !")
-
-  }
-
-
-
-  render(){
-
-    return (
-        <div>  
-
-
-    <div >
-          <Header activeSection='admin' />
-          <br></br>
-          <br></br>
-          <br></br>
-          
-          
-          <form >
-           
-            
-          <div className="form-group" id="shopKeeperIdSection">
-                 <input id="shopKeeperId" onChange={this.shopKeeperNameHandler}  type="text" value={this.state.name} className="form-control" placeholder="Enter ShopKeeper's Name"  /><br></br>
-                 <input id="shopKeeperId" onChange={this.shopKeeperLocationHandler}  type="text" value={this.state.location} className="form-control" placeholder="Enter ShopKeeper's Location"  /> <br></br>
-                 <input id="shopKeeperId" onChange={this.shopKeeperIdhandler}  type="text" value={this.state.shopKeeperAddress} className="form-control" placeholder="Enter ShopKeeper's Blockchain ID"  /> <br></br>
-          </div>
-          <br></br>
-
-          <div id="addShopKeeperButtonSection">
-              <button onClick={this.onSubmit} className="btn  btn-block" id="addShopKeeperButton" >Submit </button>
-          </div>
-          
-             
-             
-             
-         </form>
-         
-   </div> 
-            
-         
+  render() {
+    if (this.props.verified_user) {
+      return (
+        <div>
+          <ul class="header">
+            <li>
+              <Link id="homeBar" to="/home">
+                {" "}
+                <i class="fa fa-home"></i> Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/shop" id="shopBar">
+                <i class="fa fa-shopping-cart"></i> Shop
+              </Link>
+            </li>
+            <li>
+              <Link to="/rates" id="rateBar">
+                <i class="fa fa-percent"></i>Info
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" id="aboutBar">
+                Transactions
+              </Link>
+            </li>
+            <li class="right">
+              <Link id="adminBar">
+                <i class="fa fa-user-check"></i>
+                {this.props.account}
+              </Link>
+            </li>
+          </ul>
         </div>
-    );
-
+      );
+    } else if (this.props.admin) {
+      return (
+        <div>
+          <ul class="header">
+            <li>
+              <Link id="homeBar" to="/home">
+                {" "}
+                <i class="fa fa-home"></i> Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/shop" id="shopBar">
+                <i class="fa fa-shopping-cart"></i> Shop
+              </Link>
+            </li>
+            <li>
+              <Link to="/rates" id="rateBar">
+                <i class="fa fa-percent"></i>Info
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" id="aboutBar">
+                Transactions
+              </Link>
+            </li>
+            <li class="right">
+              <Link to="/admin" id="adminBar">
+                <i class="fa fa-unlock"></i> Admin
+              </Link>
+            </li>
+          </ul>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <ul class="header">
+            <li>
+              <Link id="homeBar" to="/home">
+                {" "}
+                <i class="fa fa-home"></i> Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/shop" id="shopBar">
+                <i class="fa fa-shopping-cart"></i> Shop
+              </Link>
+            </li>
+            <li>
+              <Link to="/rates" id="rateBar">
+                <i class="fa fa-percent"></i>Info
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" id="aboutBar">
+                Transactions
+              </Link>
+            </li>
+            <li class="right">
+              <Link id="adminBar">
+                <i class="fa fa-user-slash"></i>Unverified
+              </Link>
+            </li>
+          </ul>
+        </div>
+      );
+    }
   }
-  
 }
 
-export default AddShopkeeper;
+export default Header;
