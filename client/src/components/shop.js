@@ -44,9 +44,10 @@ class Shop extends Component {
       oilSubsidy: null,
       sugarSubsidy: null,
       dalSubsidy: null,
-      subsized_total: 0,
-      totalinETH: 0,
-      totalPrice: 0,
+      subsized_total_inr: 0,
+      subsized_total_eth: 0,
+      totalPrice_inr: 0,
+      totalPrice_eth: 0,
       shop_address: "",
       category: this.props.category,
     };
@@ -116,13 +117,13 @@ class Shop extends Component {
           () => {
             this.setState(
               {
-                subsized_total:
+                subsized_total_inr:
                   this.state.wheatPrice +
                   this.state.ricePrice +
                   this.state.sugarPrice +
                   this.state.dalPrice +
                   this.state.oilPrice,
-                totalPrice:
+                totalPrice_inr:
                   this.state.wheatCount *
                     parseInt(this.state.wheatPriceFirebase) +
                   this.state.riceCount *
@@ -134,9 +135,12 @@ class Shop extends Component {
               },
               () => {
                 this.setState({
-                  totalinETH: (this.state.subsized_total * 0.00000461).toFixed(
-                    6
-                  ),
+                  subsized_total_eth: (
+                    this.state.subsized_total_inr * 0.00000461
+                  ).toFixed(6),
+                  totalPrice_eth: (
+                    this.state.totalPrice_inr * 0.00000461
+                  ).toFixed(6),
                 });
               }
             );
@@ -159,13 +163,13 @@ class Shop extends Component {
           () => {
             this.setState(
               {
-                subsized_total:
+                subsized_total_inr:
                   this.state.wheatPrice +
                   this.state.ricePrice +
                   this.state.sugarPrice +
                   this.state.dalPrice +
                   this.state.oilPrice,
-                totalPrice:
+                totalPrice_inr:
                   this.state.wheatCount *
                     parseInt(this.state.wheatPriceFirebase) +
                   this.state.riceCount *
@@ -177,9 +181,12 @@ class Shop extends Component {
               },
               () => {
                 this.setState({
-                  totalinETH: (this.state.subsized_total * 0.00000461).toFixed(
-                    6
-                  ),
+                  subsized_total_eth: (
+                    this.state.subsized_total_inr * 0.00000461
+                  ).toFixed(6),
+                  totalPrice_eth: (
+                    this.state.totalPrice_inr * 0.00000461
+                  ).toFixed(6),
                 });
               }
             );
@@ -203,13 +210,13 @@ class Shop extends Component {
           () => {
             this.setState(
               {
-                subsized_total:
+                subsized_total_inr:
                   this.state.wheatPrice +
                   this.state.ricePrice +
                   this.state.sugarPrice +
                   this.state.dalPrice +
                   this.state.oilPrice,
-                totalPrice:
+                totalPrice_inr:
                   this.state.wheatCount *
                     parseInt(this.state.wheatPriceFirebase) +
                   this.state.riceCount *
@@ -221,9 +228,12 @@ class Shop extends Component {
               },
               () => {
                 this.setState({
-                  totalinETH: (this.state.subsized_total * 0.00000461).toFixed(
-                    6
-                  ),
+                  subsized_total_eth: (
+                    this.state.subsized_total_inr * 0.00000461
+                  ).toFixed(6),
+                  totalPrice_eth: (
+                    this.state.totalPrice_inr * 0.00000461
+                  ).toFixed(6),
                 });
               }
             );
@@ -246,13 +256,13 @@ class Shop extends Component {
           () => {
             this.setState(
               {
-                subsized_total:
+                subsized_total_inr:
                   this.state.wheatPrice +
                   this.state.ricePrice +
                   this.state.sugarPrice +
                   this.state.dalPrice +
                   this.state.oilPrice,
-                totalPrice:
+                totalPrice_inr:
                   this.state.wheatCount *
                     parseInt(this.state.wheatPriceFirebase) +
                   this.state.riceCount *
@@ -264,9 +274,12 @@ class Shop extends Component {
               },
               () => {
                 this.setState({
-                  totalinETH: (this.state.subsized_total * 0.00000461).toFixed(
-                    6
-                  ),
+                  subsized_total_eth: (
+                    this.state.subsized_total_inr * 0.00000461
+                  ).toFixed(6),
+                  totalPrice_eth: (
+                    this.state.totalPrice_inr * 0.00000461
+                  ).toFixed(6),
                 });
               }
             );
@@ -289,13 +302,13 @@ class Shop extends Component {
           () => {
             this.setState(
               {
-                subsized_total:
+                subsized_total_inr:
                   this.state.wheatPrice +
                   this.state.ricePrice +
                   this.state.sugarPrice +
                   this.state.dalPrice +
                   this.state.oilPrice,
-                totalPrice:
+                totalPrice_inr:
                   this.state.wheatCount *
                     parseInt(this.state.wheatPriceFirebase) +
                   this.state.riceCount *
@@ -307,9 +320,12 @@ class Shop extends Component {
               },
               () => {
                 this.setState({
-                  totalinETH: (this.state.subsized_total * 0.00000461).toFixed(
-                    6
-                  ),
+                  subsized_total_eth: (
+                    this.state.subsized_total_inr * 0.00000461
+                  ).toFixed(6),
+                  totalPrice_eth: (
+                    this.state.totalPrice_inr * 0.00000461
+                  ).toFixed(6),
                 });
               }
             );
@@ -338,13 +354,13 @@ class Shop extends Component {
           () => {
             this.setState(
               {
-                subsized_total:
+                subsized_total_inr:
                   this.state.wheatPrice +
                   this.state.ricePrice +
                   this.state.sugarPrice +
                   this.state.dalPrice +
                   this.state.oilPrice,
-                totalPrice:
+                totalPrice_inr:
                   this.state.wheatCount *
                     parseInt(this.state.wheatPriceFirebase) +
                   this.state.riceCount *
@@ -356,9 +372,12 @@ class Shop extends Component {
               },
               () => {
                 this.setState({
-                  totalinETH: (this.state.subsized_total * 0.00000461).toFixed(
-                    6
-                  ),
+                  subsized_total_eth: (
+                    this.state.subsized_total_inr * 0.00000461
+                  ).toFixed(6),
+                  totalPrice_eth: (
+                    this.state.totalPrice_inr * 0.00000461
+                  ).toFixed(6),
                 });
               }
             );
@@ -381,13 +400,13 @@ class Shop extends Component {
           () => {
             this.setState(
               {
-                subsized_total:
+                subsized_total_inr:
                   this.state.wheatPrice +
                   this.state.ricePrice +
                   this.state.sugarPrice +
                   this.state.dalPrice +
                   this.state.oilPrice,
-                totalPrice:
+                totalPrice_inr:
                   this.state.wheatCount *
                     parseInt(this.state.wheatPriceFirebase) +
                   this.state.riceCount *
@@ -399,9 +418,12 @@ class Shop extends Component {
               },
               () => {
                 this.setState({
-                  totalinETH: (this.state.subsized_total * 0.00000461).toFixed(
-                    6
-                  ),
+                  subsized_total_eth: (
+                    this.state.subsized_total_inr * 0.00000461
+                  ).toFixed(6),
+                  totalPrice_eth: (
+                    this.state.totalPrice_inr * 0.00000461
+                  ).toFixed(6),
                 });
               }
             );
@@ -425,13 +447,13 @@ class Shop extends Component {
           () => {
             this.setState(
               {
-                subsized_total:
+                subsized_total_inr:
                   this.state.wheatPrice +
                   this.state.ricePrice +
                   this.state.sugarPrice +
                   this.state.dalPrice +
                   this.state.oilPrice,
-                totalPrice:
+                totalPrice_inr:
                   this.state.wheatCount *
                     parseInt(this.state.wheatPriceFirebase) +
                   this.state.riceCount *
@@ -443,9 +465,12 @@ class Shop extends Component {
               },
               () => {
                 this.setState({
-                  totalinETH: (this.state.subsized_total * 0.00000461).toFixed(
-                    6
-                  ),
+                  subsized_total_eth: (
+                    this.state.subsized_total_inr * 0.00000461
+                  ).toFixed(6),
+                  totalPrice_eth: (
+                    this.state.totalPrice_inr * 0.00000461
+                  ).toFixed(6),
                 });
               }
             );
@@ -468,13 +493,13 @@ class Shop extends Component {
           () => {
             this.setState(
               {
-                subsized_total:
+                subsized_total_inr:
                   this.state.wheatPrice +
                   this.state.ricePrice +
                   this.state.sugarPrice +
                   this.state.dalPrice +
                   this.state.oilPrice,
-                totalPrice:
+                totalPrice_inr:
                   this.state.wheatCount *
                     parseInt(this.state.wheatPriceFirebase) +
                   this.state.riceCount *
@@ -486,9 +511,12 @@ class Shop extends Component {
               },
               () => {
                 this.setState({
-                  totalinETH: (this.state.subsized_total * 0.00000461).toFixed(
-                    6
-                  ),
+                  subsized_total_eth: (
+                    this.state.subsized_total_inr * 0.00000461
+                  ).toFixed(6),
+                  totalPrice_eth: (
+                    this.state.totalPrice_inr * 0.00000461
+                  ).toFixed(6),
                 });
               }
             );
@@ -511,13 +539,13 @@ class Shop extends Component {
           () => {
             this.setState(
               {
-                subsized_total:
+                subsized_total_inr:
                   this.state.wheatPrice +
                   this.state.ricePrice +
                   this.state.sugarPrice +
                   this.state.dalPrice +
                   this.state.oilPrice,
-                totalPrice:
+                totalPrice_inr:
                   this.state.wheatCount *
                     parseInt(this.state.wheatPriceFirebase) +
                   this.state.riceCount *
@@ -529,9 +557,12 @@ class Shop extends Component {
               },
               () => {
                 this.setState({
-                  totalinETH: (this.state.subsized_total * 0.00000461).toFixed(
-                    6
-                  ),
+                  subsized_total_eth: (
+                    this.state.subsized_total_inr * 0.00000461
+                  ).toFixed(6),
+                  totalPrice_eth: (
+                    this.state.totalPrice_inr * 0.00000461
+                  ).toFixed(6),
                 });
               }
             );
@@ -610,29 +641,42 @@ class Shop extends Component {
   handlePay(event) {
     // console.log("Address is :s"+this.state.shop_address)
     // console.log(this.state)
+
     try {
       if (Web3.utils.isAddress(this.state.shop_address)) {
         console.log("Valid address:" + this.state.shop_address);
         //   console.log(
-        //     this.state.totalPrice,
-        //     this.state.subsized_total,
-        //     this.state.totalinETH
+        //     this.state.totalPrice_inr,
+        //     this.state.subsized_total_inr,
+        //     this.state.subsized_total_eth
         //   );
         console.log(this.props.AbiAndAdd.abi);
         const Subsidy = new window.web3.eth.Contract(
           this.props.AbiAndAdd.abi,
           this.props.AbiAndAdd.add
         );
-
-        Subsidy.methods
-          .addProducts()
-          .send({ from: this.props.account }, (err, hash) => {
+        var totalPrice_wei = (
+          this.state.totalPrice_inr *
+          0.00000461 *
+          1000000000000000000
+        ).toString();
+        var subsized_wei = (
+          this.state.subsized_total_eth * 1000000000000000000
+        ).toString();
+        // console.log(subsized_wei, totalPrice_wei);
+        Subsidy.methods.payment(this.state.shop_address, totalPrice_wei).send(
+          {
+            from: this.props.account,
+            value: subsized_wei,
+          },
+          (err, hash) => {
             if (err) {
               alert(err);
             } else {
               alert("Succes !");
             }
-          });
+          }
+        );
       } else {
         window.alert("Enter a valid address");
       }
@@ -977,21 +1021,28 @@ class Shop extends Component {
               <span class="totalIn">
                 <b>Total price(₹)</b>
               </span>{" "}
-              <span class="totalFull" id="subsized_totalInRS">
-                {this.state.totalPrice}
+              <span class="totalFull" id="subsized_total_inrInRS">
+                {this.state.totalPrice_inr}
               </span>
               <br></br>
               <span class="totalIn">
                 <b>Subsized price(₹)</b>
               </span>{" "}
-              <span class="totalFull" id="subsized_totalInRS">
-                {this.state.subsized_total}
+              <span class="totalFull" id="subsized_total_inrInRS">
+                {this.state.subsized_total_inr}
+              </span>
+              <br></br>
+              <span class="totalIn">
+                <b>Total price(ETH)</b>
+              </span>{" "}
+              <span class="totalFull" id="subsized_total_inrInRS">
+                {this.state.totalPrice_eth}
               </span>
               <br></br>
               <span class="totalIn">
                 <b>Subsized price(ETH)</b>
               </span>
-              <span class="totalFull">{this.state.totalinETH}</span>
+              <span class="totalFull">{this.state.subsized_total_eth}</span>
               <br></br>
               <hr></hr>
             </div>
