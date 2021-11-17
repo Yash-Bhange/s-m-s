@@ -111,8 +111,8 @@ contract subsidy {
         return address(this).balance;
     }
 
-    function payment(address payable shop_add) external payable {
-        (bool sent, bytes memory data) = shop_add.call{value: msg.value}("");
+    function payment(address payable shop_add, uint256 total) external payable {
+        (bool sent, bytes memory data) = shop_add.call{value: total}("");
         require(sent, "Failed to send Ether");
     }
 
